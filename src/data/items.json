@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "computer",
+    "price": 20000,
+    "imgURL": "../../public/imgs/computer.jpeg"
+  },
+  {
+    "id": 2,
+    "name": "mobile",
+    "price": 74000,
+    "imgURL": "../../public/imgs/mobile.jpeg"
+  },
+  {
+    "id": 3,
+    "name": "pendrive",
+    "price": 2000,
+    "imgURL": "../../public/imgs/pendrive.jpeg"
+  },
+  {
+    "id": 4,
+    "name": "tablet",
+    "price": 50000,
+    "imgURL": "../../public/imgs/tablet.webp"
+  }
+]
