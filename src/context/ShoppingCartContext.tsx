@@ -37,34 +37,22 @@ export const ShoppingCartProvider = ({
   };
 
   const increaseCartQuantity = (id: number) => {
-    setCartItems((currItem) => {
-      const index = currItem.findIndex((item) => item.id === id);
-      const curQuantity: number = currItem[index]?.quantity;
-      currItem.splice(index, 1, {
-        id,
-        quantity: curQuantity + 1,
-      });
-      console.log({ currItem, index, curQuantity });
-      return [...currItem];
+    const index = cartItems.findIndex((item) => item.id === id);
+    const curQuantity: number = cartItems[index]?.quantity;
+    cartItems.splice(index, 1, {
+      id,
+      quantity: curQuantity + 1,
     });
+    setCartItems([...cartItems]);
   };
   const decreaseCartQuantity = (id: number) => {
-    setCartItems((currItem) => {
-      let index = -1;
-      const curQuantity: number =
-        currItem.find((item, indx) => {
-          if (item.id === id) {
-            index = indx;
-            return item;
-          }
-        })?.quantity || 0;
-
-      currItem.splice(index, 1, {
-        id,
-        quantity: curQuantity > 0 ? curQuantity - 1 : 0,
-      });
-      return [...currItem];
-    });
+    const index = cartItems.findIndex((item) => item.id === id);
+    if (cartItems[index].quantity === 1) {
+      cartItems.splice(index, 1);
+    } else {
+      cartItems[index].quantity -= 1;
+    }
+    setCartItems([...cartItems]);
   };
   const removeCartItem = (id: number) => {
     setCartItems((currItem) => currItem.filter((item) => item.id !== id));
