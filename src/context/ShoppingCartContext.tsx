@@ -1,20 +1,26 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import { StoreItemProps } from "../components/StoreItem";
+import ShoppingCart from "../components/ShoppingCart";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 interface ShoppingCartProviderProps {
   children: ReactNode;
 }
-interface CartItem {
+export interface CartItem {
   id: number;
   quantity: number;
 }
 
 interface ShoppingCartContext {
+  openCart: () => void;
+  closeCart: () => void;
+  cartQuantity: number;
   getItemQuantity: (id: number) => number;
   increaseCartQuantity: (id: number) => void;
   decreaseCartQuantity: (id: number) => void;
   removeCartItem: (id: number) => void;
   addItemsToCart: (id: number) => void;
+  cartItems: CartItem[];
 }
 //create Context
 const shoppingCartContext = createContext({} as ShoppingCartContext);
@@ -26,10 +32,14 @@ export const useShoppingCart = () => useContext(shoppingCartContext);
 export const ShoppingCartProvider = ({
   children,
 }: ShoppingCartProviderProps) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  console.log(cartItems);
+  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
+    "shopping-cart",
+    []
+  );
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const getItemQuantity = (id: number) => {
-    return cartItems.find((item) => item.id === id)?.quantity || 0;
+    return cartItems.find((item: CartItem) => item.id === id)?.quantity || 0;
   };
 
   const addItemsToCart = (id: number) => {
@@ -57,6 +67,12 @@ export const ShoppingCartProvider = ({
   const removeCartItem = (id: number) => {
     setCartItems((currItem) => currItem.filter((item) => item.id !== id));
   };
+  const cartQuantity = cartItems.reduce(
+    (acc, item) => (acc += item.quantity),
+    0
+  );
+  const openCart = () => setIsOpen(true);
+  const closeCart = () => setIsOpen(false);
   return (
     <shoppingCartContext.Provider
       value={{
@@ -65,9 +81,14 @@ export const ShoppingCartProvider = ({
         decreaseCartQuantity,
         removeCartItem,
         addItemsToCart,
+        cartQuantity,
+        cartItems,
+        openCart,
+        closeCart,
       }}
     >
       {children}
+      <ShoppingCart isOpen={isOpen} />
     </shoppingCartContext.Provider>
   );
 };
