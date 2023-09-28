@@ -3,7 +3,7 @@
     "id": 1,
     "name": "computer",
     "price": 20000,
-    "imgURL": "../../public/imgs/computer.jpeg"
+    "imgURL": "/imgs/computer.jpeg"
   },
   {
     "id": 2,
