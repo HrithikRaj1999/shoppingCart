@@ -1,4 +1,3 @@
-import React from "react";
 
 import {
   Button,
@@ -11,7 +10,7 @@ import { shoppingSvg } from "../utilities/shoppingCartLogo";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 
 const Navbar = () => {
-  const { openCart, closeCart, cartQuantity } = useShoppingCart();
+  const { openCart, cartQuantity } = useShoppingCart();
   return (
     <CustomNavbar className="bg-white shadow-lg mb-3">
       <Container>

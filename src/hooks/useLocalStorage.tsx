@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 // Define a custom React hook called useLocalStorage, which is generic and takes two parameters:
 // 'key' for the localStorage key and 'initialValue' for the initial state value.
 function useLocalStorage<T>(key: string, initialValue: T | (() => T)) {

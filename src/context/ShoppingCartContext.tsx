@@ -1,5 +1,4 @@
 import { ReactNode, createContext, useContext, useState } from "react";
-import { StoreItemProps } from "../components/StoreItem";
 import ShoppingCart from "../components/ShoppingCart";
 import useLocalStorage from "../hooks/useLocalStorage";
 

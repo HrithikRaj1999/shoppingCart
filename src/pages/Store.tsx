@@ -1,4 +1,3 @@
-import React from "react";
 import storeItems from "../data/items.json";
 import { Col, Row } from "react-bootstrap";
 import StoreItem from "../components/StoreItem";

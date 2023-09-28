@@ -18,8 +18,6 @@ const StoreItem = ({ id, name, price, imgURL }: StoreItemProps) => {
     getItemQuantity,
     addItemsToCart,
     cartItems,
-    openCart,
-    closeCart,
   } = useShoppingCart();
   const quantity = getItemQuantity(id);
   return (
