@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+
 import { Button, Card } from "react-bootstrap";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { useShoppingCart } from "../context/ShoppingCartContext";
@@ -17,7 +17,6 @@ const StoreItem = ({ id, name, price, imgURL }: StoreItemProps) => {
     increaseCartQuantity,
     getItemQuantity,
     addItemsToCart,
-    cartItems,
   } = useShoppingCart();
   const quantity = getItemQuantity(id);
   return (
